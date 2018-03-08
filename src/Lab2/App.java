@@ -38,6 +38,10 @@ public class App {
                 case 5:
                     System.out.println("Podaj kolor <0, 3>");
                     App.displayByColor(deck, scanner.nextInt());
+                    break;
+                case 6:
+                    App.removeDuplicates(deck);
+                    break;
             }
 
             App.displayMenu();
@@ -79,7 +83,8 @@ public class App {
         System.out.println("2 - wyświetl liste");
         System.out.println("3 - wyświetl liczbe elementow");
         System.out.println("4 - wyswietl karty z wartoscia");
-        System.out.println("5 - wyswietl karty z kolorem\n");
+        System.out.println("5 - wyswietl karty z kolorem");
+        System.out.println("6 - usuń duplikaty kart\n");
     }
 
     private static void displayDeck(ArrayList<Card> deck) {
@@ -135,5 +140,29 @@ public class App {
         }
 
         return true;
+    }
+
+    private static void removeDuplicates(ArrayList<Card> deck) {
+        if (App.checkDeck(deck)) {
+            boolean[][] valuesOptions = new boolean[13][];
+            ArrayList<Card> newDeck = new ArrayList<Card>();
+
+            for (Card card : deck) {
+                int valueIndex = card.getValue() - 1;
+                if (valuesOptions[valueIndex] != null) {
+                    if (!valuesOptions[valueIndex][card.getColor()]) {
+                        valuesOptions[valueIndex][card.getColor()] = true;
+                        newDeck.add(card);
+                    }
+                } else {
+                    boolean[] colorsOptions = new boolean[4];
+                    valuesOptions[valueIndex] = colorsOptions;
+                    valuesOptions[valueIndex][card.getColor()] = true;
+                    newDeck.add(card);
+                }
+            }
+            deck.clear();
+            deck.addAll(newDeck);
+        }
     }
 }
