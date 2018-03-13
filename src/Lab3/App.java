@@ -51,6 +51,11 @@ public class App {
                         }
                     }
                     break;
+                case 6:
+                    if (deck != null) {
+                        System.out.println("Podaj numer karty do usuniecia <1, " + deck.size() + ">");
+                        deck.remove(scanner.nextInt() - 1);
+                    }
             }
 
             App.displayMenu();
@@ -64,6 +69,7 @@ public class App {
         System.out.println("3 - wyświetl liczbe elementow");
         System.out.println("4 - wyswietl karty z wartoscia");
         System.out.println("5 - wyswietl karty z kolorem");
+        System.out.println("6 - usuń karte o numerze");
     }
 
     private static SinglyLinkedList<Card> generateRandomSortedSinglyLinkedDeck() {

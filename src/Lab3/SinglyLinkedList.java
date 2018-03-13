@@ -84,7 +84,22 @@ public class SinglyLinkedList<E> {
     }
 
     public void remove(int index) {
+        if (this.head != null && index < this.size()) {
+            Element currentElement = this.head;
+            Element previousElement = this.head;
+            int i = 0;
 
+            if (index > 0) {
+                while (currentElement.getNext() != null && i++ != index) {
+                    previousElement = currentElement;
+                    currentElement = currentElement.getNext();
+                }
+
+                previousElement.setNext(currentElement.getNext());
+            } else {
+                this.head = this.head.getNext();
+            }
+        }
     }
 
     public void display() {
