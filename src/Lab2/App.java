@@ -57,15 +57,27 @@ public class App {
             Card newCard = new Card(randomValue, randomColor);
 
             if (deck.size() > 0) {
-                int index = deck.size();
+                int index = deck.size(), i = 0;
 
                 for (Card card : deck) {
                     if (newCard.getValue() < card.getValue()) {
-                        index = deck.indexOf(card);
+                        index = i;
                         break;
                     } else if (newCard.getValue() == card.getValue()) {
-                        index = newCard.getColor() < card.getColor() ? deck.indexOf(card) : deck.indexOf(card) + 1;
+                        if (newCard.getColor() < card.getColor()) {
+                            index = i;
+                            break;
+                        } else if (newCard.getColor() == card.getColor()) {
+                            if (deck.size() <= i + 1) {
+                                index = i + 1;
+                                break;
+                            } else if (deck.get(i + 1).getColor() > card.getColor()) {
+                                index = i;
+                                break;
+                            }
+                        }
                     }
+                    i++;
                 }
 
                 deck.add(index, newCard);
