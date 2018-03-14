@@ -4,13 +4,14 @@ import java.security.InvalidParameterException;
 
 public class Card {
     public static final int MIN_VALUE = 1;
-    public static final int MAX_VALUE = 13;
+    public static final int MAX_VALUE = 14;
     public static final int MIN_COLOR = 0;
     public static final int MAX_COLOR = 3;
-    private final String[] values = {"As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Walet", "Dama", "Król"};
+    private final String[] values = {"As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Walet", "Dama", "Król", "Joker"};
     private final String[] colors = {"Kier", "Karo", "Trefl", "Pik"};
     private int value;
     private int color;
+    private boolean isVisible;
 
     Card(int value, int color) {
         if (value < Card.MIN_VALUE || value > Card.MAX_VALUE) {
@@ -23,6 +24,7 @@ public class Card {
 
         this.value = value;
         this.color = color;
+        this.isVisible = value != Card.MAX_VALUE;
     }
 
     public int getValue() {
@@ -33,9 +35,13 @@ public class Card {
         return color;
     }
 
+    public boolean isVisible() {
+        return isVisible;
+    }
+
     @Override
     public String toString() {
-        return this.values[this.value - 1] + " " + this.colors[this.color] +
-                "\t\t" + this.value + " | " + this.color;
+        return this.value != Card.MAX_VALUE ?
+                this.values[this.value - 1] + " " + this.colors[this.color] + "\t\t" + this.value + " | " + this.color : "()";
     }
 }
