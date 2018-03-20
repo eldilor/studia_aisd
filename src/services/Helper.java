@@ -7,4 +7,9 @@ public class Helper {
         Random rand = new Random();
         return rand.nextInt((max - min) + 1) + min;
     }
+
+    public static double getRandomDoubleInRange(int min, int max) {
+        Random rand = new Random();
+        return min + (max - min) * rand.nextDouble();
+    }
 }
