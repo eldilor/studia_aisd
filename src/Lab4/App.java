@@ -2,8 +2,12 @@ package Lab4;
 
 public class App {
     public static void run() {
-        WareHouse wareHouse = new WareHouse();
+//        THIS IS FOR PART DONE IN HOME
+//        WareHouse wareHouse = new WareHouse();
+//
+//        wareHouse.completeOrders();
 
-        wareHouse.completeOrders();
+        Company company = new Company();
+        System.out.println("Company income: " + company.getIncome());
     }
 }
