@@ -44,3 +44,30 @@ Do karty dodać pole ,które mówi czy karta jest zakryta, czy odkryta. Dodać k
 z wartością 14 i przy tworzeniu jest zakryta. Domyślnie reszta kart jest odkrytych. Karta 
 zakryta ma się wyświetlać jako `()`. Do menu dodać opcje wyświetlania liczby kart zakrytych 
 i odkrytych, opcję usuwania kart zakrytych, opcje usuwania duplikatów.
+
+## Zadanie 4
+Napisz program, w którym będą zdefiniowane dwa procesy: magazyn i klient. Magazyn
+tworzy ogólnodostępną kolejkę FIFO i czeka na zgłoszenia klientów.
+Każdy klient tworzy własną kolejkę, poprzez którą będzie podawał swoje zamówienia.
+Element zamówienia zawiera nazwę towaru, liczbę sztuk i cenę jednostkową. Zgłoszenie
+klienta polega na podaniu nazwy klienta i referencji do własnej kolejki.
+Magazyn realizuje zgłoszenie klienta pobierając element ze swojej kolejki, następnie pobiera
+kolejne elementy z kolejki klienta, oblicza kwotę do zapłaty za zamówienie. Następnie
+wyświetla komunikat: „Zlecenie zrealizowane:” Nazwa klienta, „ kwota do zapłaty” = kwota.
+
+W programie zdefiniuj:
+ interfejs generyczny Queue z metodami:
+o insert()
+– wstawia element na koniec kolejki
+o remove()
+– usuwa element z początku kolejki
+o isEmpty()
+– zwraca true, jeśli kolejka pusta
+o isFull()
+– zwraca true, jeśli kolejka pełna
+ klasę Kolejka implementującą interfejs Queue, stosując listę jednokierunkową (singly
+linked).
+
+#### Dodatkowo na zajęciach:
+Dodać klasę Firma, która posiada daną liczbę magazynów. Zaimplementować metodę przychodu - 
+sumy wszystkich zamówień ze wszystkich magazynów.
