@@ -1,4 +1,4 @@
-import Lab4.App;
+import Lab5.App;
 
 public class Main {
     public static void main(String[] args) {
