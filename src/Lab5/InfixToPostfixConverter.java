@@ -1,5 +1,7 @@
 package Lab5;
 
+import services.Helper;
+
 public class InfixToPostfixConverter {
     private final char[] ALLOWED_OPERATORS = {'+', '-', '*', '/', '%', '(', ')'};
     private Stack<Character> operators;
@@ -10,10 +12,12 @@ public class InfixToPostfixConverter {
         this.postfix = "";
         char[] charInfixArray = infix.toCharArray();
 
+
         for (char charInfix : charInfixArray) {
             if (Character.isDigit(charInfix)) {
                 this.postfix += charInfix;
             } else if (this.isOperator(charInfix)) {
+                this.postfix += " ";
                 this.processOperator(charInfix);
             } else {
                 throw new Exception("Wyrażenie jest nie poprawne");
@@ -23,7 +27,7 @@ public class InfixToPostfixConverter {
         while (!this.operators.isEmpty()) {
             char topOperator = this.operators.pop();
             if (topOperator != this.ALLOWED_OPERATORS[5] && topOperator != this.ALLOWED_OPERATORS[6]) {
-                this.postfix += topOperator;
+                this.postfix += " " + topOperator;
             }
         }
 
@@ -32,33 +36,37 @@ public class InfixToPostfixConverter {
 
     public double calculate() throws Exception {
         Stack<Double> score = new Stack<>();
-        char[] expressionArray = this.postfix.toCharArray();
+        String[] expressionArray = Helper.split(this.postfix, ' ');
 
-        for (char expressionChar : expressionArray) {
-            if (Character.isDigit(expressionChar)) {
-                score.push((double) Character.digit(expressionChar, 10));
-            } else if (this.isOperator(expressionChar)) {
-                double arg1 = score.pop();
+        for (String expressionChar : expressionArray) {
+            if (this.isOperator(expressionChar)) {
                 double arg2 = score.pop();
+                double arg1 = score.pop();
                 double result = 0;
 
-                if (expressionChar == this.ALLOWED_OPERATORS[0]) {
+                if (expressionChar.equals(Character.toString(this.ALLOWED_OPERATORS[0]))) {
                     result = arg1 + arg2;
-                } else if (expressionChar == this.ALLOWED_OPERATORS[1]) {
+                } else if (expressionChar.equals(Character.toString(this.ALLOWED_OPERATORS[1]))) {
                     result = arg1 - arg2;
-                } else if (expressionChar == this.ALLOWED_OPERATORS[2]) {
+                } else if (expressionChar.equals(Character.toString(this.ALLOWED_OPERATORS[2]))) {
                     result = arg1 * arg2;
-                } else if (expressionChar == this.ALLOWED_OPERATORS[3]) {
-                    result = arg1 / arg2;
-                } else if (expressionChar == this.ALLOWED_OPERATORS[4]) {
+                } else if (expressionChar.equals(Character.toString(this.ALLOWED_OPERATORS[3]))) {
+                    if (arg2 != 0) {
+                        result = arg1 / arg2;
+                    } else {
+                        throw new Exception("Nie można dzielić przez 0!");
+                    }
+                } else if (expressionChar.equals(Character.toString(this.ALLOWED_OPERATORS[4]))) {
                     result = arg1 % arg2;
                 } else {
                     throw new Exception("Nie ma takiego operatora");
                 }
 
                 score.push(result);
+            } else if (expressionChar.equals(" ")) {
+
             } else {
-                throw new Exception("Wystąpił błąd");
+                score.push(Double.parseDouble(expressionChar));
             }
         }
 
@@ -84,10 +92,10 @@ public class InfixToPostfixConverter {
                     }
 
                     topOperatorPriority = this.getOperatorPriority(topOperator);
-                    this.postfix += topOperator;
+                    this.postfix += topOperator + " ";
                 }
 
-                if (topOperator != this.ALLOWED_OPERATORS[6]) {
+                if (operator != this.ALLOWED_OPERATORS[6]) {
                     this.operators.push(operator);
                 }
             }
@@ -124,6 +132,19 @@ public class InfixToPostfixConverter {
 
         for (char allowedOperation : this.ALLOWED_OPERATORS) {
             if (character == allowedOperation) {
+                isOperator = true;
+                break;
+            }
+        }
+
+        return isOperator;
+    }
+
+    private boolean isOperator(String character) {
+        boolean isOperator = false;
+
+        for (char allowedOperation : this.ALLOWED_OPERATORS) {
+            if (Character.toString(allowedOperation).equals(character)) {
                 isOperator = true;
                 break;
             }
