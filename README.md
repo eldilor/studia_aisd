@@ -71,3 +71,14 @@ linked).
 #### Dodatkowo na zajęciach:
 Dodać klasę Firma, która posiada daną liczbę magazynów. Zaimplementować metodę przychodu - 
 sumy wszystkich zamówień ze wszystkich magazynów.
+
+## Zadanie 5
+Napisać program zamieniający napis z działaniami matematycznymi na
+odwróconą notację polską i liczący wynik operacji.
+
+#### Dodatkowo na zajęciach:
+((2+3)*2+2)%5 = 23+2*2+5% = 2
+((10+2)*(2+3))/10 = 10 2+23+*10/ = 6
+(2+2)/(2-2) = 22+22-/ = pokazać błąd
+
+Dodać nawiasy: {}, [] i sprawdzać, czy nawiasy się zgadzają.
