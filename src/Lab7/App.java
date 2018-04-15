@@ -25,6 +25,9 @@ public class App {
         app.testQuickSort();
         app.testHeapSort();
         app.testMergeSort();
+
+        System.out.println("Najlepiej wypada quicksort, w każdym przypadku. Najgorzej poradził sobie bubble sort. \n" +
+                "Dla danych posortowanych rosnąco wyjątkowo dobrze poradził sobie insertsort.");
     }
 
     private void testInsertSort() {
