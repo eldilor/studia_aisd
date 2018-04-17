@@ -94,3 +94,20 @@ Każdy z algorytmów ma być wywołany trzykrotnie:
 - dla danych posortowanych malejąco
 
 Program ma prowadzić pomiar czasów sortowania.
+
+## Zadanie 8
+Zaimplementuj różne wersje algorytmu Shella:
+- Wersja 1: insertsort we wszystkich sortowniach „co h” i „co 1”,
+- Wersja 2: insertsort w sortowaniu „co h” i bubblesort w sortowaniu „co 1”
+- Wersja 3: bubblesort w sortowaniu „co h” i insertsort w sortowaniu „co 1”.
+
+Uruchom wszystkie wersje dla każdego z następujących ciągów:
+- h 1 =1, h i+1 = 3h i +1 aż do h i takiego, że h i  n
+- 2 k - 1 ; 1, 3, 7, 15, 31, 63, ...
+- 2 k + 1 ; 1, 3, 5, 9, 17, 33, 65, ...
+- Liczby Fibonacciego
+
+Wykonaj wszystkie te wersje na tablicy liczb całkowitych o rozmiarze (5000, 10 000,
+50 000 i 100 000).
+
+Stablicuj i przedstaw graficznie wyniki.
